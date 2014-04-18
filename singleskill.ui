@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SingleSkill</class>
+ <widget class="QGroupBox" name="SingleSkill">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>GroupBox</string>
+  </property>
+  <property name="title">
+   <string>GroupBox</string>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="LabelABL">
+     <property name="text">
+      <string>Ability:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="LabelArm">
+     <property name="text">
+      <string>Armor Penality?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="LabelTrain">
+     <property name="text">
+      <string>Trained only?</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboAbility">
+     <item>
+      <property name="text">
+       <string>Strength</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Dexterity</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Constitution</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Intelligence</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Wisdom</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Charisma</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="LabelSyn">
+     <property name="text">
+      <string>Synergies From:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QScrollArea" name="Scroll">
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>244</width>
+        <height>69</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QCheckBox" name="CheckArmor">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="tristate">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QCheckBox" name="CheckTrain">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="tristate">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
