@@ -2,6 +2,8 @@
 #define SKILLCREATOR_H
 
 #include <QWidget>
+#include <QVector>
+#include <QMap>
 
 namespace Ui {
 class Skillcreator;
@@ -17,6 +19,8 @@ public:
 
 private:
     Ui::Skillcreator *ui;
+    QVector<QString> codes;
+    QMap<QString,QString> names;
 };
 
 #endif // SKILLCREATOR_H

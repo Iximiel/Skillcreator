@@ -1,6 +1,7 @@
 #ifndef SINGLESKILL_H
 #define SINGLESKILL_H
 #include <QVector>
+#include <QMap>
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QString>
@@ -14,7 +15,7 @@ class SingleSkill : public QGroupBox
     Q_OBJECT
 
 public:
-    explicit SingleSkill( QString id, QWidget *parent = 0);
+    explicit SingleSkill(int id, QVector<QString> codes,QMap<QString, QString>names, QWidget *parent = 0);
     ~SingleSkill();
 
 private:
