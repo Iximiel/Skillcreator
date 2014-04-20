@@ -45,6 +45,7 @@ Skillcreator::Skillcreator(QWidget *parent) :
     }
     data->setLayout(dataholder);
     ui->scrollArea->setWidget(data);
+    connect(ui->ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
 }
 
 Skillcreator::~Skillcreator()
@@ -76,6 +77,26 @@ void Skillcreator::Save_toFile(){
         for (int i = 0; i < 3/*skillAddress.size()*/; ++i) {
             xml.writeStartElement("skill");
             xml.writeStartElement("code");
+            xml.writeCharacters(codes[i]);
+            xml.writeEndElement();
+            xml.writeStartElement("ability");
+           xml.writeCharacters(skillAddress[i]->use_Ability());
+            xml.writeEndElement();
+            xml.writeStartElement("armor");
+           xml.writeCharacters(skillAddress[i]->has_Armor());
+            xml.writeEndElement();
+            xml.writeStartElement("onlytrained");
+           xml.writeCharacters(skillAddress[i]->needs_trained());
+            xml.writeEndElement();
+            QVector<int> synID = skillAddress[i]->give_Synergies();
+            for (int j = 0; j < synID.size(); ++j) {
+                xml.writeStartElement("synergy");
+               xml.writeCharacters(codes[synID[j]]);
+                xml.writeEndElement();
+            }
+            xml.writeEndElement();
         }
+        xml.writeEndElement();
+        xml.writeEndDocument();
     }
 }

@@ -33,19 +33,31 @@ SingleSkill::~SingleSkill()
     delete ui;
 }
 
-int SingleSkill::use_Ability(){return ui->comboAbility->currentIndex();}
+QString SingleSkill::use_Ability(){
+    QString toreturn;
+    toreturn.number(ui->comboAbility->currentIndex());
+    return toreturn;
+}
 
-int SingleSkill::has_Armor(){return ui->CheckArmor->checkState();}
+QString SingleSkill::has_Armor(){
+    QString toreturn;
+    toreturn.number( ui->CheckArmor->checkState());
+    return toreturn;
+}
 
-int SingleSkill::needs_trained(){return ui->CheckTrain->isChecked();}
+QString SingleSkill::needs_trained(){
+    QString toreturn;
+    toreturn.number(ui->CheckTrain->isChecked());
+    return toreturn;
+}
 
-QVector<QString> SingleSkill::give_Synergies(QVector<QString> codes)
+QVector<int> SingleSkill::give_Synergies()
 {
-    QVector<QString> toreturn;
+    QVector<int> toreturn;
 
     for (int i = 0; i < Checks.size(); ++i) {
         if(Checks[i]->isChecked())
-            toreturn.push_back(codes[i]);
+            toreturn.push_back(i);
     }
     return toreturn;
 }

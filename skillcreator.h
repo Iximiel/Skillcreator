@@ -17,6 +17,8 @@ class Skillcreator : public QWidget
 public:
     explicit Skillcreator(QWidget *parent = 0);
     ~Skillcreator();
+
+public slots:
     void Save_toFile();
 
 private:
