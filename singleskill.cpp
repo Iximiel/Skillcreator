@@ -35,19 +35,19 @@ SingleSkill::~SingleSkill()
 
 QString SingleSkill::use_Ability(){
     QString toreturn;
-    toreturn.number(ui->comboAbility->currentIndex());
+    toreturn.setNum(ui->comboAbility->currentIndex());
     return toreturn;
 }
 
 QString SingleSkill::has_Armor(){
     QString toreturn;
-    toreturn.number( ui->CheckArmor->checkState());
+    toreturn.setNum( ui->CheckArmor->checkState());
     return toreturn;
 }
 
 QString SingleSkill::needs_trained(){
     QString toreturn;
-    toreturn.number(ui->CheckTrain->isChecked());
+    toreturn.setNum(ui->CheckTrain->isChecked());
     return toreturn;
 }
 
