@@ -76,7 +76,7 @@ void Skillcreator::Save_toFile(){
         xml.writeStartDocument();
         xml.writeStartElement("skills");
 
-        for (int i = 0; i < 3/*skillAddress.size()*/; ++i) {
+        for (int i = 0; i < skillAddress.size(); ++i) {
             xml.writeStartElement("skill");
 
             xml.writeTextElement("code",codes[i]);
