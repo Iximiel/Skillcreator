@@ -83,7 +83,7 @@ Skillcreator::Skillcreator(QWidget *parent) :
                     if(xml.name()=="synergy"&&xml.isStartElement()){
                         while(!xml.readNext()==6);
 
-                        skillAddress[id]->set_Synergies(xml.text().toInt());
+                        skillAddress[id]->set_Synergies(codes.indexOf(xml.text().toString()));
                     }
                 }
             }
