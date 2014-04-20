@@ -24,7 +24,7 @@ public:
     void set_Ability(int ability);
     void set_Armor(int armorCheck);
     void set_trained(int trainedOnly);
-    void set_Synergies(QVector<int> SynIDs);
+    void set_Synergies(int SynID);
 private:
     Ui::SingleSkill *ui;
     QVector<QCheckBox*> Checks;

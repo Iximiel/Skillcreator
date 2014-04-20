@@ -74,7 +74,4 @@ void SingleSkill::set_Armor(int armorCheck){
     }
 }
 void SingleSkill::set_trained(int trainedOnly){ui->CheckTrain->setChecked(trainedOnly);}
-void SingleSkill::set_Synergies(QVector<int> SynIDs){
-    for (int i = 0; i < SynIDs.size(); ++i)
-        Checks[SynIDs[i]]->setChecked(true);
-}
+void SingleSkill::set_Synergies(int SynID){Checks[SynID]->setChecked(true);}
