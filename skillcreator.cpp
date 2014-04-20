@@ -45,7 +45,47 @@ Skillcreator::Skillcreator(QWidget *parent) :
     }
     data->setLayout(dataholder);
     ui->scrollArea->setWidget(data);
-    connect(ui->ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
+    file.close();
+
+    QFile oldfile("Skills_data.txt");
+    if (!oldfile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qDebug()<<"errore lettura";
+        //add an alert!
+    }
+    else{
+        QXmlStreamReader xml(&oldfile);
+        while(!xml.atEnd()){
+            int id = 0;
+            if(xml.name=="skill"&&xml.isStartElement())
+            {
+                while(!(xml.name=="skill"&&xml.isEndElement()))
+                    xml.readNext();
+                if(xml.name=="code"&&xml.isStartElement()){
+                    while(!xml.readNext()==6);
+
+                    id = codes.indexOf(xml.text().toString());
+                }
+                if(xml.name=="ability"&&xml.isStartElement()){
+                    while(!xml.readNext()==6);
+
+                    xml.text().toInt();
+                }
+
+                if(xml.name=="code"&&xml.isStartElement()){
+                    while(!xml.readNext()==6);
+
+                    id = codes.indexOf(xml.text().toString());
+                }
+
+            }
+            if (xml.hasError()) {
+                // do error handling
+            }
+            xml.readNext();
+        }
+    }
+oldfile.close();
+connect(ui->ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
 }
 
 Skillcreator::~Skillcreator()
