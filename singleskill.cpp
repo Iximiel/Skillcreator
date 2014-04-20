@@ -61,3 +61,20 @@ QVector<int> SingleSkill::give_Synergies()
     }
     return toreturn;
 }
+
+void SingleSkill::set_Ability(int ability){ui->comboAbility->setCurrentIndex(ability);}
+void SingleSkill::set_Armor(int armorCheck){
+    switch (armorCheck) {
+    case 1:
+        ui->CheckArmor->setCheckState(Qt::PartiallyChecked);
+        break;
+    case 2:
+        ui->CheckArmor->setCheckState(Qt::Checked);
+        break;
+    }
+}
+void SingleSkill::set_trained(int trainedOnly){ui->CheckTrain->setChecked(trainedOnly);}
+void SingleSkill::set_Synergies(QVector<int> SynIDs){
+    for (int i = 0; i < SynIDs.size(); ++i)
+        Checks[SynIDs[i]]->setChecked(true);
+}

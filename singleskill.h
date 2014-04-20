@@ -21,6 +21,10 @@ public:
     QString has_Armor();
     QString needs_trained();
     QVector<int> give_Synergies();
+    void set_Ability(int ability);
+    void set_Armor(int armorCheck);
+    void set_trained(int trainedOnly);
+    void set_Synergies(QVector<int> SynIDs);
 private:
     Ui::SingleSkill *ui;
     QVector<QCheckBox*> Checks;
