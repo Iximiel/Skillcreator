@@ -1,10 +1,9 @@
 #include "skillcreator.h"
 #include "ui_skillcreator.h"
 
-#include "singleskill.h"
-
 #include <QFile>
 #include <QXmlStreamReader>
+#include <QXmlStreamWriter>
 #include <QDebug>
 #include <QLayout>
 
@@ -41,7 +40,8 @@ Skillcreator::Skillcreator(QWidget *parent) :
     QVBoxLayout *dataholder = new QVBoxLayout();
     int skillnumber = codes.size();
     for (int i = 0; i < skillnumber; ++i) {
-        dataholder->addWidget(new SingleSkill(i,codes,names));
+        skillAddress.push_back(new SingleSkill(i,codes,names));
+        dataholder->addWidget(skillAddress[i]);
     }
     data->setLayout(dataholder);
     ui->scrollArea->setWidget(data);
@@ -50,4 +50,32 @@ Skillcreator::Skillcreator(QWidget *parent) :
 Skillcreator::~Skillcreator()
 {
     delete ui;
+}
+
+void Skillcreator::Save_toFile(){
+    QFile file("Skills_data.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        qDebug()<<"errore salvataggio";
+        //add an alert!
+    }else{
+        /*
+        <skills>
+            <skill>
+                <code>app</code>
+                <attribute>INT</attribute>
+                <armor>0</armor><!--moltiplica per-->
+                <untrained>1</untrained>
+                <synergy><synergy><!--sarebbe from usa codice skill-->
+            </skill>
+        </skills>
+        */
+        QXmlStreamWriter xml(&file);
+        xml.writeStartDocument();
+        xml.writeStartElement("skills");
+        //xml.writeTextElement("\n");
+        for (int i = 0; i < 3/*skillAddress.size()*/; ++i) {
+            xml.writeStartElement("skill");
+            xml.writeStartElement("code");
+        }
+    }
 }
