@@ -58,34 +58,34 @@ Skillcreator::Skillcreator(QWidget *parent) :
             int id = 0;
             if(xml.name()=="skill"&&xml.isStartElement())
             {
-                while(!(xml.name()=="skill"&&xml.isEndElement()))
+                while(!(xml.name()=="skill"&&xml.isEndElement())){
                     xml.readNext();
-                if(xml.name()=="code"&&xml.isStartElement()){
-                    while(!xml.readNext()==6);
+                    if(xml.name()=="code"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
 
-                    id = codes.indexOf(xml.text().toString());
+                        id = codes.indexOf(xml.text().toString());
+                    }
+                    if(xml.name()=="ability"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+
+                        skillAddress[id]->set_Ability(xml.text().toInt());
+                    }
+                    if(xml.name()=="armor"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+
+                        skillAddress[id]->set_Armor(xml.text().toInt());
+                    }
+                    if(xml.name()=="onlytrained"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+
+                        skillAddress[id]->set_trained(xml.text().toInt());
+                    }
+                    if(xml.name()=="synergy"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+
+                        skillAddress[id]->set_Synergies(xml.text().toInt());
+                    }
                 }
-                if(xml.name()=="ability"&&xml.isStartElement()){
-                    while(!xml.readNext()==6);
-
-                    skillAddress[id]->set_Ability(xml.text().toInt());
-                }
-                if(xml.name()=="armor"&&xml.isStartElement()){
-                    while(!xml.readNext()==6);
-
-                    skillAddress[id]->set_Armor(xml.text().toInt());
-                }
-                if(xml.name()=="onlytrained"&&xml.isStartElement()){
-                    while(!xml.readNext()==6);
-
-                    skillAddress[id]->set_trained(xml.text().toInt());
-                }
-                if(xml.name()=="synergy"&&xml.isStartElement()){
-                    while(!xml.readNext()==6);
-
-                    skillAddress[id]->set_Synergies(xml.text().toInt());
-                }
-
             }
             if (xml.hasError()) {
                 // do error handling
