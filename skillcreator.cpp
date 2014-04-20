@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QXmlStreamReader>
 #include <QDebug>
+#include <QLayout>
 
 Skillcreator::Skillcreator(QWidget *parent) :
     QWidget(parent),
@@ -36,6 +37,10 @@ Skillcreator::Skillcreator(QWidget *parent) :
             }
         }
     }
+    QWidget *data = new QWidget ();
+    QLayout *dataholder = new QLayout();
+    dataholder->setAlignment()
+
     ui->scrollArea->setWidget(new SingleSkill(1,codes,names));
 }
 
