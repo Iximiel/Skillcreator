@@ -10,6 +10,12 @@
     <height>200</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>350</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
@@ -22,25 +28,17 @@
   <property name="title">
    <string>GroupBox</string>
   </property>
+  <property name="flat">
+   <bool>false</bool>
+  </property>
+  <property name="checkable">
+   <bool>false</bool>
+  </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="LabelABL">
      <property name="text">
       <string>Ability:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="LabelArm">
-     <property name="text">
-      <string>Armor Penality?</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="LabelTrain">
-     <property name="text">
-      <string>Trained only?</string>
      </property>
     </widget>
    </item>
@@ -87,6 +85,12 @@
    </item>
    <item row="3" column="1">
     <widget class="QScrollArea" name="Scroll">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
@@ -98,30 +102,30 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>244</width>
-        <height>69</height>
+        <width>207</width>
+        <height>73</height>
        </rect>
       </property>
      </widget>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QCheckBox" name="CheckArmor">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="tristate">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="1">
     <widget class="QCheckBox" name="CheckTrain">
      <property name="text">
-      <string/>
+      <string>Trained only?</string>
      </property>
      <property name="tristate">
       <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QCheckBox" name="CheckArmor">
+     <property name="text">
+      <string>Armor Penality?</string>
+     </property>
+     <property name="tristate">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

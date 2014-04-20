@@ -38,10 +38,13 @@ Skillcreator::Skillcreator(QWidget *parent) :
         }
     }
     QWidget *data = new QWidget ();
-    QLayout *dataholder = new QLayout();
-    dataholder->setAlignment()
-
-    ui->scrollArea->setWidget(new SingleSkill(1,codes,names));
+    QVBoxLayout *dataholder = new QVBoxLayout();
+    int skillnumber = codes.size();
+    for (int i = 0; i < skillnumber; ++i) {
+        dataholder->addWidget(new SingleSkill(i,codes,names));
+    }
+    data->setLayout(dataholder);
+    ui->scrollArea->setWidget(data);
 }
 
 Skillcreator::~Skillcreator()
