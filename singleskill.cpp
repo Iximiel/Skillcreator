@@ -15,6 +15,7 @@ SingleSkill::SingleSkill(int id, QVector<QString> codes,QMap<QString, QString>na
     for(int i=0;i<codes.size();i++){
         QCheckBox *tCheck =new QCheckBox();
         tCheck ->setText(names[codes[i]]);
+        tCheck ->setTristate(true);//partially = circumstantial, check = always
         if (id==i){
             tCheck->setEnabled(false);
             setTitle(names[codes[i]]);
@@ -62,6 +63,17 @@ QVector<int> SingleSkill::give_Synergies()
     return toreturn;
 }
 
+QVector<int> SingleSkill::give_CyrcSynergies()
+{
+    QVector<int> toreturn;
+
+    for (int i = 0; i < Checks.size(); ++i) {
+        if(Checks[i]->checkState() == 1)
+            toreturn.push_back(i);
+    }
+    return toreturn;
+}
+
 void SingleSkill::set_Ability(int ability){ui->comboAbility->setCurrentIndex(ability);}
 void SingleSkill::set_Armor(int armorCheck){
     switch (armorCheck) {
@@ -75,3 +87,4 @@ void SingleSkill::set_Armor(int armorCheck){
 }
 void SingleSkill::set_trained(int trainedOnly){ui->CheckTrain->setChecked(trainedOnly);}
 void SingleSkill::set_Synergies(int SynID){Checks[SynID]->setChecked(true);}
+void SingleSkill::set_CyrcSynergies(int SynID){Checks[SynID]->setCheckState(Qt::PartiallyChecked);}
