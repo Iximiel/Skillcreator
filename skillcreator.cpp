@@ -85,6 +85,11 @@ Skillcreator::Skillcreator(QWidget *parent) :
 
                         skillAddress[id]->set_Synergies(codes.indexOf(xml.text().toString()));
                     }
+                    if(xml.name()=="circumstantial"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+
+                        skillAddress[id]->set_CyrcSynergies(codes.indexOf(xml.text().toString()));
+                    }
                 }
             }
             if (xml.hasError()) {
