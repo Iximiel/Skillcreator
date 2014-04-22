@@ -1,7 +1,7 @@
 #include "singleskill.h"
 #include "ui_singleskill.h"
 
-#include <QDebug>
+//#include <QDebug>
 
 SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names, QWidget *parent) :
     QGroupBox(parent),

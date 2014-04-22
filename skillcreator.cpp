@@ -4,8 +4,9 @@
 #include <QFile>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
-#include <QDebug>
 #include <QLayout>
+
+//#include <QDebug>
 
 Skillcreator::Skillcreator(QWidget *parent) :
     QWidget(parent),
@@ -15,7 +16,7 @@ Skillcreator::Skillcreator(QWidget *parent) :
 
     QFile file("Skills_Eng.xml");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qDebug()<<"errore";
+       // qDebug()<<"errore";
         //add an alert!
     }
     else{
@@ -83,7 +84,7 @@ Skillcreator::Skillcreator(QWidget *parent) :
 
     QFile oldfile("Skills_data.txt");
     if (!oldfile.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qDebug()<<"errore lettura";
+       // qDebug()<<"errore lettura";
         //add an alert!
     }
     else{
@@ -144,7 +145,7 @@ Skillcreator::~Skillcreator()
 void Skillcreator::Save_toFile(){
     QFile file("Skills_data.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)){
-        qDebug()<<"errore salvataggio";
+        //qDebug()<<"errore salvataggio";
         //add an alert!
     }else{
         /*
