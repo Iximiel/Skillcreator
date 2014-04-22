@@ -23,7 +23,7 @@ public slots:
 
 private:
     Ui::Skillcreator *ui;
-    QVector<QString> codes;
+    QStringList codes;
     QMap<QString,QString> names;
     QVector<SingleSkill*> skillAddress;
 };

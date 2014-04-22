@@ -15,7 +15,7 @@ class SingleSkill : public QGroupBox
     Q_OBJECT
 
 public:
-    explicit SingleSkill(int id, QVector<QString> codes,QMap<QString, QString>names, QWidget *parent = 0);
+    explicit SingleSkill(int id, QStringList codes,QMap<QString, QString>names, QWidget *parent = 0);
     ~SingleSkill();
     QString use_Ability();
     QString has_Armor();

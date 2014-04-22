@@ -3,7 +3,7 @@
 
 #include <QDebug>
 
-SingleSkill::SingleSkill(int id, QVector<QString> codes,QMap<QString, QString>names, QWidget *parent) :
+SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names, QWidget *parent) :
     QGroupBox(parent),
     ui(new Ui::SingleSkill)
 {
