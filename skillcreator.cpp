@@ -13,27 +13,34 @@ Skillcreator::Skillcreator(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QFile file("Skills_Eng.txt");
+    QFile file("Skills_Eng.xml");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         qDebug()<<"errore";
         //add an alert!
     }
     else{
         QXmlStreamReader xml(&file);
-        xml.readNext();
-        if(xml.name()!="skills")
-            xml.readNext();
         while(!xml.atEnd()){
-            if(xml.readNext() == 4){
-                QString code = xml.name().toString();
-                codes.push_back(code);
-                if(xml.readNext() == 6){
-                    names.insert(code, xml.text().toString());
+            if(xml.name()=="skill"&&xml.isStartElement())
+            {
+                QString code;
+                while(!(xml.name()=="skill"&&xml.isEndElement())){
+                    xml.readNext();
+                    if(xml.name()=="code"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+                        code = xml.text().toString();
+                        codes.push_back(code);
+                    }
+                    if(xml.name()=="name"&&xml.isStartElement()){
+                        while(!xml.readNext()==6);
+                        names.insert(code, xml.text().toString());
+                    }
                 }
             }
             if (xml.hasError()) {
                 // do error handling
             }
+            xml.readNext();
         }
     }
     QWidget *data = new QWidget ();
@@ -46,6 +53,33 @@ Skillcreator::Skillcreator(QWidget *parent) :
     data->setLayout(dataholder);
     ui->scrollArea->setWidget(data);
     file.close();
+
+
+
+    /*//cancellare
+    QFile tfile("Skills_Eng.xml");
+    if (!tfile.open(QIODevice::WriteOnly | QIODevice::Text)){
+        qDebug()<<"errore salvataggio";
+        //add an alert!
+    }else{
+        QXmlStreamWriter xml(&tfile);
+        xml.setAutoFormatting(true);
+        xml.setAutoFormattingIndent(2);
+        xml.writeStartElement("skills");
+
+        for (int i = 0; i < codes.size(); ++i) {
+        xml.writeStartElement("skill");
+        xml.writeTextElement("code",codes[i]);
+        xml.writeTextElement("name",names[codes[i]]);
+        xml.writeEndElement();
+
+        }
+        xml.writeEndElement();
+        xml.writeEndDocument();
+
+    }
+    //cancellare*/
+
 
     QFile oldfile("Skills_data.txt");
     if (!oldfile.open(QIODevice::ReadOnly | QIODevice::Text)){

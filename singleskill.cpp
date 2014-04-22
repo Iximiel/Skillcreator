@@ -57,7 +57,7 @@ QVector<int> SingleSkill::give_Synergies()
     QVector<int> toreturn;
 
     for (int i = 0; i < Checks.size(); ++i) {
-        if(Checks[i]->isChecked())
+        if(Checks[i]->checkState()==2)
             toreturn.push_back(i);
     }
     return toreturn;
