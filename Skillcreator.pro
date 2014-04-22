@@ -19,5 +19,5 @@ SOURCES += main.cpp\
 HEADERS  += skillcreator.h \
     singleskill.h
 
-FORMS    += skillcreator.ui \
-    singleskill.ui
+FORMS    += skillcreator.ui #\
+   # singleskill.ui

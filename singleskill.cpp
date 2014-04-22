@@ -1,16 +1,45 @@
 #include "singleskill.h"
-#include "ui_singleskill.h"
+#include <QFormLayout>
+//#include "ui_singleskill.h"
 
 //#include <QDebug>
 
 SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names, QWidget *parent) :
-    QGroupBox(parent),
-    ui(new Ui::SingleSkill)
+    QGroupBox(parent)/*,
+      ui(new Ui::SingleSkill)*/
 {
     identity = codes[id];
-    ui->setupUi(this);
+    // /*ui->*/setupUi(this);
+    QFormLayout *form = new QFormLayout(this);
 
-    QWidget *inside = new QWidget (ui->Scroll);
+
+    LabelABL = new QLabel("Ability");
+    comboAbility = new QComboBox();
+
+    form->addRow(LabelABL,comboAbility);
+    comboAbility->addItem("Strength");
+    comboAbility->addItem("Dexterity");
+    comboAbility->addItem("Constitution");
+    comboAbility->addItem("Intelligence");
+    comboAbility->addItem("Wisdom");
+    comboAbility->addItem("Charisma");
+
+
+    CheckArmor = new QCheckBox("Armor Penality?");
+
+    form->addRow("",CheckArmor);
+    CheckArmor->setTristate(true);
+
+    CheckTrain = new QCheckBox("Trained only?");
+
+    form->addRow("",CheckTrain);
+    LabelSyn = new QLabel("Synergies From:");
+    Scroll = new QScrollArea();
+    Scroll->horizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    form->addRow(LabelSyn,Scroll);
+
+    QWidget *inside = new QWidget (/*ui->*/Scroll);
     QVBoxLayout *grid = new QVBoxLayout();
     for(int i=0;i<codes.size();i++){
         QCheckBox *tCheck =new QCheckBox();
@@ -25,7 +54,7 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
     }
 
     inside->setLayout(grid);
-    ui->Scroll->setWidget(inside);
+    /*ui->*/Scroll->setWidget(inside);
 
 }
 
@@ -36,19 +65,19 @@ SingleSkill::~SingleSkill()
 
 QString SingleSkill::use_Ability(){
     QString toreturn;
-    toreturn.setNum(ui->comboAbility->currentIndex());
+    toreturn.setNum(/*ui->*/comboAbility->currentIndex());
     return toreturn;
 }
 
 QString SingleSkill::has_Armor(){
     QString toreturn;
-    toreturn.setNum( ui->CheckArmor->checkState());
+    toreturn.setNum( /*ui->*/CheckArmor->checkState());
     return toreturn;
 }
 
 QString SingleSkill::needs_trained(){
     QString toreturn;
-    toreturn.setNum(ui->CheckTrain->isChecked());
+    toreturn.setNum(/*ui->*/CheckTrain->isChecked());
     return toreturn;
 }
 
@@ -74,17 +103,17 @@ QVector<int> SingleSkill::give_CyrcSynergies()
     return toreturn;
 }
 
-void SingleSkill::set_Ability(int ability){ui->comboAbility->setCurrentIndex(ability);}
+void SingleSkill::set_Ability(int ability){/*ui->*/comboAbility->setCurrentIndex(ability);}
 void SingleSkill::set_Armor(int armorCheck){
     switch (armorCheck) {
     case 1:
-        ui->CheckArmor->setCheckState(Qt::PartiallyChecked);
+        /*ui->*/CheckArmor->setCheckState(Qt::PartiallyChecked);
         break;
     case 2:
-        ui->CheckArmor->setCheckState(Qt::Checked);
+        /*ui->*/CheckArmor->setCheckState(Qt::Checked);
         break;
     }
 }
-void SingleSkill::set_trained(int trainedOnly){ui->CheckTrain->setChecked(trainedOnly);}
+void SingleSkill::set_trained(int trainedOnly){/*ui->*/CheckTrain->setChecked(trainedOnly);}
 void SingleSkill::set_Synergies(int SynID){Checks[SynID]->setChecked(true);}
 void SingleSkill::set_CyrcSynergies(int SynID){Checks[SynID]->setCheckState(Qt::PartiallyChecked);}
