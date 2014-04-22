@@ -35,7 +35,7 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
     form->addRow("",CheckTrain);
     LabelSyn = new QLabel("Synergies From:");
     Scroll = new QScrollArea();
-    Scroll->horizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    Scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     form->addRow(LabelSyn,Scroll);
 
@@ -60,7 +60,7 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
 
 SingleSkill::~SingleSkill()
 {
-    delete ui;
+    //delete ui;
 }
 
 QString SingleSkill::use_Ability(){
