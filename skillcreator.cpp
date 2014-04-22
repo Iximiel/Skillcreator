@@ -5,14 +5,21 @@
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QLayout>
+#include <QGridLayout>
 
 //#include <QDebug>
 
 Skillcreator::Skillcreator(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Skillcreator)
+    QWidget(parent)/*,
+    ui(new Ui::Skillcreator)*/
 {
-    ui->setupUi(this);
+    ///*ui->*/setupUi(this);
+    QGridLayout *grid = new QGridLayout();
+       ButtSave = new QPushButton("Save");
+       scrollArea = new QScrollArea();
+       grid->addWidget(scrollArea,0,0,1,2);
+       grid->addWidget(ButtSave,1,1);
+               setLayout(grid);
 
     QFile file("Skills_Eng.xml");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -52,7 +59,7 @@ Skillcreator::Skillcreator(QWidget *parent) :
         dataholder->addWidget(skillAddress[i]);
     }
     data->setLayout(dataholder);
-    ui->scrollArea->setWidget(data);
+    /*ui->*/scrollArea->setWidget(data);
     file.close();
 
 
@@ -134,12 +141,12 @@ Skillcreator::Skillcreator(QWidget *parent) :
         }
     }
 oldfile.close();
-connect(ui->ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
+connect(/*ui->*/ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
 }
 
 Skillcreator::~Skillcreator()
 {
-    delete ui;
+    //delete ui;
 }
 
 void Skillcreator::Save_toFile(){

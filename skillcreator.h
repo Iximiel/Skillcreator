@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QVector>
 #include <QMap>
+#include <QScrollArea>
+#include <QPushButton>
 #include "singleskill.h"
 
 namespace Ui {
@@ -22,7 +24,9 @@ public slots:
     void Save_toFile();
 
 private:
-    Ui::Skillcreator *ui;
+    //Ui::Skillcreator *ui;
+    QPushButton *ButtSave;
+    QScrollArea *scrollArea;
     QStringList codes;
     QMap<QString,QString> names;
     QVector<SingleSkill*> skillAddress;

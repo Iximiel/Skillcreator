@@ -5,11 +5,9 @@
 //#include <QDebug>
 
 SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names, QWidget *parent) :
-    QGroupBox(parent)/*,
-      ui(new Ui::SingleSkill)*/
+    QGroupBox(parent)
 {
     identity = codes[id];
-    // /*ui->*/setupUi(this);
     QFormLayout *form = new QFormLayout(this);
 
 
@@ -39,7 +37,7 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
 
     form->addRow(LabelSyn,Scroll);
 
-    QWidget *inside = new QWidget (/*ui->*/Scroll);
+    QWidget *inside = new QWidget (Scroll);
     QVBoxLayout *grid = new QVBoxLayout();
     for(int i=0;i<codes.size();i++){
         QCheckBox *tCheck =new QCheckBox();
@@ -54,30 +52,30 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
     }
 
     inside->setLayout(grid);
-    /*ui->*/Scroll->setWidget(inside);
+    Scroll->setWidget(inside);
 
 }
 
 SingleSkill::~SingleSkill()
 {
-    //delete ui;
+
 }
 
 QString SingleSkill::use_Ability(){
     QString toreturn;
-    toreturn.setNum(/*ui->*/comboAbility->currentIndex());
+    toreturn.setNum(comboAbility->currentIndex());
     return toreturn;
 }
 
 QString SingleSkill::has_Armor(){
     QString toreturn;
-    toreturn.setNum( /*ui->*/CheckArmor->checkState());
+    toreturn.setNum( CheckArmor->checkState());
     return toreturn;
 }
 
 QString SingleSkill::needs_trained(){
     QString toreturn;
-    toreturn.setNum(/*ui->*/CheckTrain->isChecked());
+    toreturn.setNum(CheckTrain->isChecked());
     return toreturn;
 }
 
@@ -103,17 +101,17 @@ QVector<int> SingleSkill::give_CyrcSynergies()
     return toreturn;
 }
 
-void SingleSkill::set_Ability(int ability){/*ui->*/comboAbility->setCurrentIndex(ability);}
+void SingleSkill::set_Ability(int ability){comboAbility->setCurrentIndex(ability);}
 void SingleSkill::set_Armor(int armorCheck){
     switch (armorCheck) {
     case 1:
-        /*ui->*/CheckArmor->setCheckState(Qt::PartiallyChecked);
+        CheckArmor->setCheckState(Qt::PartiallyChecked);
         break;
     case 2:
-        /*ui->*/CheckArmor->setCheckState(Qt::Checked);
+        CheckArmor->setCheckState(Qt::Checked);
         break;
     }
 }
-void SingleSkill::set_trained(int trainedOnly){/*ui->*/CheckTrain->setChecked(trainedOnly);}
+void SingleSkill::set_trained(int trainedOnly){CheckTrain->setChecked(trainedOnly);}
 void SingleSkill::set_Synergies(int SynID){Checks[SynID]->setChecked(true);}
 void SingleSkill::set_CyrcSynergies(int SynID){Checks[SynID]->setCheckState(Qt::PartiallyChecked);}

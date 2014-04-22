@@ -8,10 +8,6 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QScrollArea>
-/*
-namespace Ui {
-class SingleSkill;
-}*/
 
 class SingleSkill : public QGroupBox
 {
@@ -31,7 +27,7 @@ public:
     void set_Synergies(int SynID);
     void set_CyrcSynergies(int SynID);
 private:
-   // Ui::SingleSkill *ui;
+
     QScrollArea *Scroll;
     QLabel *LabelABL, *LabelSyn;
     QComboBox * comboAbility;
