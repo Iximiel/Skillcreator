@@ -24,12 +24,12 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
 
 
     CheckArmor = new QCheckBox("Armor Penality?");
-    CheckArmor->setToolTip(tr("1 click= armor penaliti, 2 clicks double armor penality"));
+    CheckArmor->setToolTip(tr("1 click armor penality, 2 clicks for double armor penality"));
     form->addRow("",CheckArmor);
     CheckArmor->setTristate(true);
 
     CheckTrain = new QCheckBox("Trained only?");
-
+    CheckTrain->setToolTip(tr("Check if this skill could not be used if untrained"));
     form->addRow("",CheckTrain);
     LabelSyn = new QLabel("Synergies From:");
     Scroll = new QScrollArea();
@@ -43,6 +43,7 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
         QCheckBox *tCheck =new QCheckBox();
         tCheck ->setText(names[codes[i]]);
         tCheck ->setTristate(true);//partially = circumstantial, check = always
+        tCheck->setToolTip(tr("single click for circumstantial synergy, 2 clicks for normal synergy"));
         if (id==i){
             tCheck->setEnabled(false);
             setTitle(names[codes[i]]);
