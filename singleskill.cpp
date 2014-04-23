@@ -8,12 +8,12 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
     QGroupBox(parent)
 {
     identity = codes[id];
+    setMinimumSize(100,250);
+
     QFormLayout *form = new QFormLayout(this);
-
-
     LabelABL = new QLabel("Ability");
     comboAbility = new QComboBox();
-
+    comboAbility->setToolTip(tr("Chose the Ability to use with this skill"));
     form->addRow(LabelABL,comboAbility);
     comboAbility->addItem("Strength");
     comboAbility->addItem("Dexterity");
@@ -24,7 +24,7 @@ SingleSkill::SingleSkill(int id, QStringList codes, QMap<QString, QString>names,
 
 
     CheckArmor = new QCheckBox("Armor Penality?");
-
+    CheckArmor->setToolTip(tr("1 click= armor penaliti, 2 clicks double armor penality"));
     form->addRow("",CheckArmor);
     CheckArmor->setTristate(true);
 

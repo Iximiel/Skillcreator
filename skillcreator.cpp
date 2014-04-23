@@ -10,13 +10,15 @@
 //#include <QDebug>
 
 Skillcreator::Skillcreator(QWidget *parent) :
-    QWidget(parent)/*,
-    ui(new Ui::Skillcreator)*/
+    QWidget(parent)
 {
-    ///*ui->*/setupUi(this);
+    setMinimumSize(400,200);
+    resize(400,600);
     QGridLayout *grid = new QGridLayout();
        ButtSave = new QPushButton("Save");
        scrollArea = new QScrollArea();
+       scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+       scrollArea->setWidgetResizable(true);
        grid->addWidget(scrollArea,0,0,1,2);
        grid->addWidget(ButtSave,1,1);
                setLayout(grid);
@@ -59,12 +61,11 @@ Skillcreator::Skillcreator(QWidget *parent) :
         dataholder->addWidget(skillAddress[i]);
     }
     data->setLayout(dataholder);
-    /*ui->*/scrollArea->setWidget(data);
+    scrollArea->setWidget(data);
     file.close();
 
 
-
-    /*//cancellare
+#ifdef REDO
     QFile tfile("Skills_Eng.xml");
     if (!tfile.open(QIODevice::WriteOnly | QIODevice::Text)){
         qDebug()<<"errore salvataggio";
@@ -76,17 +77,17 @@ Skillcreator::Skillcreator(QWidget *parent) :
         xml.writeStartElement("skills");
 
         for (int i = 0; i < codes.size(); ++i) {
-        xml.writeStartElement("skill");
-        xml.writeTextElement("code",codes[i]);
-        xml.writeTextElement("name",names[codes[i]]);
-        xml.writeEndElement();
+            xml.writeStartElement("skill");
+            xml.writeTextElement("code",codes[i]);
+            xml.writeTextElement("name",names[codes[i]]);
+            xml.writeEndElement();
 
         }
         xml.writeEndElement();
         xml.writeEndDocument();
 
     }
-    //cancellare*/
+#endif
 
 
     QFile oldfile("Skills_data.txt");
@@ -141,12 +142,12 @@ Skillcreator::Skillcreator(QWidget *parent) :
         }
     }
 oldfile.close();
-connect(/*ui->*/ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
+connect(ButtSave,SIGNAL(pressed()),this,SLOT(Save_toFile()));
 }
 
 Skillcreator::~Skillcreator()
 {
-    //delete ui;
+
 }
 
 void Skillcreator::Save_toFile(){
@@ -159,7 +160,7 @@ void Skillcreator::Save_toFile(){
         <skills>
             <skill>
                 <code>app</code>
-                <ability>INT</ability>
+                <ability>0-5</ability>
                 <armor>0</armor><!--multiply for-->
                 <untrained>1</untrained>
                 <synergy>blu<synergy><!--search for a skill-->

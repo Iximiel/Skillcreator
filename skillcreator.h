@@ -8,10 +8,6 @@
 #include <QPushButton>
 #include "singleskill.h"
 
-namespace Ui {
-class Skillcreator;
-}
-
 class Skillcreator : public QWidget
 {
     Q_OBJECT
@@ -24,7 +20,6 @@ public slots:
     void Save_toFile();
 
 private:
-    //Ui::Skillcreator *ui;
     QPushButton *ButtSave;
     QScrollArea *scrollArea;
     QStringList codes;
