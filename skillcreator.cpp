@@ -7,7 +7,7 @@
 #include <QLayout>
 #include <QGridLayout>
 
-//#include <QDebug>
+#include <QDebug>
 
 Skillcreator::Skillcreator(QWidget *parent) :
     QWidget(parent)
@@ -36,12 +36,12 @@ Skillcreator::Skillcreator(QWidget *parent) :
                 QString code;
                 while(!(xml.name()=="skill"&&xml.isEndElement())){
                     xml.readNext();
-                    if(xml.name()=="code"&&xml.isStartElement()){
+                    if(xml.name()=="code"&&xml.isStartElement()){//taking code
                         while(!xml.readNext()==6);
                         code = xml.text().toString();
                         codes.push_back(code);
                     }
-                    if(xml.name()=="name"&&xml.isStartElement()){
+                    if(xml.name()=="name"&&xml.isStartElement()){//taking names
                         while(!xml.readNext()==6);
                         names.insert(code, xml.text().toString());
                     }
@@ -90,7 +90,7 @@ Skillcreator::Skillcreator(QWidget *parent) :
 #endif
 
 
-    QFile oldfile("Skills_data.txt");
+    QFile oldfile("Skills_data.xml");
     if (!oldfile.open(QIODevice::ReadOnly | QIODevice::Text)){
        // qDebug()<<"errore lettura";
         //add an alert!
@@ -156,17 +156,6 @@ void Skillcreator::Save_toFile(){
         //qDebug()<<"errore salvataggio";
         //add an alert!
     }else{
-        /*
-        <skills>
-            <skill>
-                <code>app</code>
-                <ability>0-5</ability>
-                <armor>0</armor><!--multiply for-->
-                <untrained>1</untrained>
-                <synergy>blu<synergy><!--search for a skill-->
-            </skill>
-        </skills>
-        */
         QXmlStreamWriter xml(&file);
         xml.setAutoFormatting(true);
         xml.setAutoFormattingIndent(2);
@@ -175,17 +164,24 @@ void Skillcreator::Save_toFile(){
 
         for (int i = 0; i < skillAddress.size(); ++i) {
             xml.writeStartElement("skill");
-
-            xml.writeTextElement("code",codes[i]);
-            xml.writeTextElement("ability",skillAddress[i]->use_Ability());
-            xml.writeTextElement("armor",skillAddress[i]->has_Armor());
-            xml.writeTextElement("onlytrained",skillAddress[i]->needs_trained());
+            xml.writeAttribute("code",names[codes[i]]);
+            xml.writeAttribute("ability",skillAddress[i]->use_Ability());
+            QString armor = skillAddress[i]->has_Armor();
+            if(armor!="0")
+                xml.writeAttribute("armor",armor);
+            QString trained = skillAddress[i]->needs_trained();
+            if(trained!="0")
+                xml.writeAttribute("onlytrained",trained);
             QVector<int> synID = skillAddress[i]->give_Synergies();
             for (int j = 0; j < synID.size(); ++j)
-                xml.writeTextElement("synergy",codes[synID[j]]);
+                xml.writeTextElement("synergy",names[codes[synID[j]]]);
             synID = skillAddress[i]->give_CyrcSynergies();
-            for (int j = 0; j < synID.size(); ++j)
-                xml.writeTextElement("circumstantial",codes[synID[j]]);
+            for (int j = 0; j < synID.size(); ++j){
+                xml.writeStartElement("synergy");
+                xml.writeAttribute("circumstantial","description");
+                xml.writeCharacters(names[codes[synID[j]]]);
+                xml.writeEndElement();
+            }
 
 
             xml.writeEndElement();
